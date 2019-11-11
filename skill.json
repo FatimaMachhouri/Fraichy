@@ -1,0 +1,29 @@
+{
+  "manifest": {
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "ask-custom-CommandeEnLigneDialogManagement-default",
+          "sourceDir": "lambda/us-east-1_ask-custom-CommandeEnLigneDialogManagement-default"
+        },
+        "interfaces": []
+      }
+    },
+    "manifestVersion": "1.0",
+    "publishingInformation": {
+      "locales": {
+        "fr-FR": {
+          "name": "CommandeEnLigneDialogManagement",
+          "summary": "Sample Short Description",
+          "description": "Sample Full Description",
+          "examplePhrases": [],
+          "keywords": []
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Sample Testing Instructions.",
+      "category": "KNOWLEDGE_AND_TRIVIA",
+      "distributionCountries": []
+    }
+  }
+}

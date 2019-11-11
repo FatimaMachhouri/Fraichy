@@ -1,0 +1,277 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "fraichy ouvre toi",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "aide moi",
+            "je ne sais pas quoi dire"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "fraichy ferme toi"
+          ]
+        },
+        {
+          "name": "CommandeHabituelleIntent",
+          "slots": [
+            {
+              "name": "commande",
+              "type": "AMAZON.Food"
+            },
+            {
+              "name": "adresse",
+              "type": "AMAZON.StreetName",
+              "samples": [
+                "à l'adresse suivante {adresse}",
+                "à l'adresse {adresse}",
+                "{adresse}"
+              ]
+            }
+          ],
+          "samples": [
+            "réalise ma commande habituelle à ladresse {adresse}",
+            "réalise ma commande habituelle",
+            "effectue ma commande habituelle à ladresse {adresse}",
+            "effectue ma commande habituelle",
+            "fais livrer ma commande habituelle à ladresse {adresse}",
+            "commande comme dhabitude à ladresse {adresse}",
+            "commande comme dhabitude"
+          ]
+        },
+        {
+          "name": "NouvelleCommandeIntent",
+          "slots": [
+            {
+              "name": "quantite",
+              "type": "AMAZON.NUMBER",
+              "samples": []
+            },
+            {
+              "name": "commande",
+              "type": "AMAZON.Food",
+              "samples": [
+                "ma commande est {quantite} {commande}",
+                "{quantite} {commande}"
+              ]
+            },
+            {
+              "name": "prixTotal",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "adresse",
+              "type": "AMAZON.StreetName",
+              "samples": [
+                "à l'adresse suivante {adresse}",
+                "à l'adresse {adresse}",
+                "{adresse}"
+              ]
+            }
+          ],
+          "samples": [
+            "fais livrer {quantite} {commande} à ladresse {adresse}",
+            "je veux manger {quantite} {commande}",
+            "réalise une nouvelle commande",
+            "ma nouvelle commande est {quantite} {commande}",
+            "commande {quantite} {commande}",
+            "nouvelle commande"
+          ]
+        },
+        {
+          "name": "SuggestionsIntent",
+          "slots": [],
+          "samples": [
+            "donne moi des suggestions",
+            "je ne sais pas quoi manger"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "habituelle"
+              }
+            }
+          ],
+          "name": "AMAZON.StreetName"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "CommandeHabituelleIntent",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.589995695302"
+          },
+          "slots": [
+            {
+              "name": "commande",
+              "type": "AMAZON.Food",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            },
+            {
+              "name": "adresse",
+              "type": "AMAZON.StreetName",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1256870445656.857872406751"
+              }
+            }
+          ],
+          "delegationStrategy": "SKILL_RESPONSE"
+        },
+        {
+          "name": "NouvelleCommandeIntent",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.970822907796"
+          },
+          "slots": [
+            {
+              "name": "quantite",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            },
+            {
+              "name": "commande",
+              "type": "AMAZON.Food",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.970822907796.388555139041"
+              }
+            },
+            {
+              "name": "adresse",
+              "type": "AMAZON.StreetName",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.970822907796.1003420607404"
+              }
+            },
+            {
+              "name": "prixTotal",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            }
+          ],
+          "delegationStrategy": "SKILL_RESPONSE"
+        }
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1256870445656.857872406751",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "à quelle adresse souhaitez-vous effectuer la livraison ?"
+          },
+          {
+            "type": "PlainText",
+            "value": "quelle est l'adresse de livraison ?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.589995695302",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Votre commande {commande} sera livrée à l'adresse {adresse}. Confirmez-vous ?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Voulez-vous confirmer votre commande {commande} à l'adresse {adresse} ?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Confirmez-vous votre commande {commande} à l'adresse {adresse} ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.970822907796.388555139041",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "quelle est votre commande ?"
+          },
+          {
+            "type": "PlainText",
+            "value": "que souhaitez-vous commander ?"
+          },
+          {
+            "type": "PlainText",
+            "value": "que voulez-vous manger ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.970822907796.1003420607404",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "à quelle adresse souhaitez-vous effectuer la livraison ?"
+          },
+          {
+            "type": "PlainText",
+            "value": "quelle est l'adresse de livraison ?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.970822907796",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Voulez-vous confirmer votre commande {quantite} {commande} pour un total de {prixTotal} à l'adresse {adresse} ?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Votre commande {quantite} {commande} pour un total de {prixTotal} sera livrée à l'adresse {adresse} . Confirmez-vous ?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Confirmez-vous votre commande {quantite} {commande} pour un total de {prixTotal} à l'adresse {adresse} ?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "365"
+}
